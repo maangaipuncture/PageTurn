@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Ex8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+
+    .fullpage {
+      padding-inline: 10%;
+    }
+
+    .lastla {
+    font-family: 'PT Serif';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    text-align: left;
+    color: #113599;
+    padding-block: 100px;
+    padding-left: 10%;
+  }
+
+    h1,a {
+      font-family: 'Poppins', 'Helvetica', serif;
+      font-style: normal;
+      font-weight: 700;
+      color: #113599;
+      text-align: center;
+      text-decoration-line: none;
+    }
+    .toolbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      widht: 30px;
+    }
+    .toolbar button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #FFCD4E;
+    }
+    .editor {
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 300px;
+    }
+
+    #nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+/*      background-color: #EFEFF0;*/
+      padding-inline: 1rem;
+    }
+
+    .navspace {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5rem;
+      padding-inline: 1rem;
+    }
+
+    h1.title {
+      text-align: left;
+      padding-top: 50px;
+      padding-bottom: 30px;
+    }
+
+    button {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      color: #113599;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="fullpage">
+      <div id="nav">
+      <div>
+        <img id="pageturn" src="logo.png" width=200px>
+      </div>
+      <div class="navspace">
+        <a href="Homepage.html">HOME</a>
+        <a href="#"></a>
+      </div>
+    </div>
+
+    <h1 class="title">ENTER YOUR REVIEW</h1>
+
+    <div ng-controller="myCtrl">
+      <div class="toolbar">
+        <button ng-click="formatText('bold')"><b>B</b></button>
+        <button ng-click="formatText('italic')"><i>I</i></button>
+        <button ng-click="formatText('underline')"><u>U</u></button>
+        <button ng-click="formatText('insertUnorderedList')">&#x25cf;</button>
+        <button ng-click="formatText('insertOrderedList')">&#35;</button>
+        <button ng-click="formatText('indent')">&#8594;</button>
+        <button ng-click="formatText('outdent')">&#8592;</button>
+        <button ng-click="formatText('justifyLeft')">&#x2190;</button>
+        <button ng-click="formatText('justifyCenter')">&#x2194;</button>
+        <button ng-click="formatText('justifyRight')">&#x2192;</button>
+        <button ng-click="formatText('justifyFull')">&#x21c6;</button>
+      </div>
+      <div style="padding-bottom: 100px"><div class="editor" contenteditable="true" ng-model="myText"></div></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      var app = angular.module("myApp", []);
+      app.controller("myCtrl", function($scope) {
+        $scope.formatText = function(command) {
+          document.execCommand(command, false, null);
+        };
+      });
+
+    </script>
+  </div>
+  <footer style="background: #FFCD4E;">
+    <p class="lastla">PageTurn Limited<br>Designed and Developed by Rohith Saravanan</p>
+    </footer>
+</body>
+</html>

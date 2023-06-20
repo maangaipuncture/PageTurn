@@ -1,0 +1,254 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <link rel="stylesheet" href="styles.css" >
+    <style>
+      #contents{
+        margin: 0;
+      }
+      #navbar{
+        display: flex;
+        gap: 30px;
+        background-color: black;
+        width: 100vw;
+        margin: 0;
+        padding: 20px;
+        font-family: 'Calisto MT', serif;
+      }
+      #navbar > a{
+        color: ivory;
+      }
+    </style>
+  </head>
+  <body ng-app="myApp">
+    <div id="banner">
+      <div id="header">
+          <p style="font-size: 20pt; border: solid 6px; padding: 20px;"> Part 4: AngularJS navigation menu</p>
+          <a href="main_page.html" style="color:black"> Return to homepage.</a>
+      </div>
+      <img src="assets/hazard.jpg" width="300px">
+    </div>
+    <div id="contents">
+      <div id="navbar">
+        <a href="#/!"></a>
+        <a href="#!italian">Italian cuisine</a>
+        <a href="#!japanese">Japanese cuisine</a>
+        <a href="#!indian">Indian cuisine</a>
+        <a href="#!english">English cuisine</a>
+      </div>
+      <div ng-view></div>
+      <script>
+        const app = angular.module("myApp", ["ngRoute"]);
+        app.config(function ($routeProvider) {
+          $routeProvider
+            .when("/italian", {
+              template:`<html>
+                        <head>
+                          <style>
+                              #main{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                font-family: 'Calisto MT', serif;
+                              }
+                              #main>img{
+                                width: 450px;
+                                height: 450px;
+                                object-fit: cover;
+                              }
+                              #desc{
+                                width: 40%;
+                                text-align: justify;
+                                font-size: 12pt;
+                              }
+                          </style>
+                        </head>
+                        <body>
+                          <div id="main">
+                            <h1>Italian cuisine</h1>
+                            <img src="assets/italian.jpg">
+                            <p id="desc">Italian cuisine is known for its simplicity, quality ingredients, and regional diversity. 
+                              Pasta, pizza, and risotto are some of the most famous Italian dishes, 
+                              but there's much more to the cuisine than that. 
+                              Italian cooking emphasizes the use of fresh herbs, olive oil, and garlic, 
+                              and the importance of balancing flavors. Italian cuisine also features a wide range of cured 
+                              meats, cheeses, and bread, and regional specialties such as Tuscan steak, Neapolitan pizza, 
+                              and Sicilian seafood. Desserts like tiramisu and gelato are also popular. 
+                              Italian food is enjoyed around the world and has become an integral part 
+                              of many countries' culinary traditions.</p>
+                          </div>
+                        </body>
+                        </html>`
+            })
+            .when("/japanese", {
+              template: `<html>
+                        <head>
+                          <style>
+                              #main{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                font-family: 'Calisto MT', serif;
+                              }
+                              #main>img{
+                                width: 450px;
+                                height: 450px;
+                                object-fit: cover;
+                              }
+                              #desc{
+                                width: 40%;
+                                text-align: justify;
+                                font-size: 12pt;
+                              }
+                          </style>
+                        </head>
+                        <body>
+                          <div id="main">
+                            <h1>Japanese cuisine</h1>
+                            <img src="assets/japanese.jpg">
+                            <p id="desc">Japanese cuisine is known for its fresh, delicate flavors and beautiful presentation. 
+                              It emphasizes seasonal ingredients and simple preparation techniques that highlight the natural 
+                              flavors of the food. Rice, seafood, and vegetables are staples of the Japanese diet, 
+                              and are often prepared in dishes like sushi, sashimi, tempura, and ramen. 
+                              Soy sauce, miso, and sake are commonly used in Japanese cooking, along with other ingredients 
+                              like seaweed, tofu, and pickled vegetables. Overall, Japanese cuisine is considered to be healthy, 
+                              balanced, and incredibly delicious.</p>
+                          </div>
+                        </body>
+                        </html>`
+            })
+            .when("/indian", {
+              template:`<html>
+                        <head>
+                          <style>
+                              #main{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                font-family: 'Calisto MT', serif;
+                              }
+                              #main>img{
+                                width: 450px;
+                                height: 450px;
+                                object-fit: cover;
+                              }
+                              #desc{
+                                width: 40%;
+                                text-align: justify;
+                                font-size: 12pt;
+                              }
+                          </style>
+                        </head>
+                        <body>
+                          <div id="main">
+                            <h1>Indian cuisine</h1>
+                            <img src="assets/indian.jpg">
+                            <p id="desc">Indian cuisine is a diverse and flavorful cuisine that varies greatly by region and culture. 
+                              Some of the most prominent and widely recognized Indian dishes include biryani, butter chicken, samosas, 
+                              naan bread, tandoori chicken, and curry. The cuisine is characterized by the use of a variety of spices, 
+                              herbs, and seasonings, as well as a wide range of vegetarian and non-vegetarian dishes. 
+                              Indian food also features an array of breads, rice dishes, snacks, and desserts, 
+                              making it a versatile and satisfying cuisine. Overall, Indian cuisine is an 
+                              important part of the country's rich cultural heritage and has gained popularity around the world.</p>
+                          </div>
+                        </body>
+                        </html>`
+            })
+            .when("/english", {
+              template:`<html>
+                        <head>
+                          <style>
+                              #main{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                font-family: 'Calisto MT', serif;
+                              }
+                              #main>img{
+                                width: 450px;
+                                height: 450px;
+                                object-fit: cover;
+                              }
+                              #desc{
+                                width: 40%;
+                                text-align: justify;
+                                font-size: 12pt;
+                              }
+                          </style>
+                        </head>
+                        <body>
+                          <div id="main">
+                            <h1>English cuisine</h1>
+                            <img src="assets/british.jpg">
+                            <p id="desc">English cuisine has a long and diverse history, 
+                              influenced by a range of factors including geography, climate, religion, and trade. 
+                              It has evolved over time, with dishes and ingredients introduced and adapted from various cultures.
+                              Some traditional English dishes include roast beef and Yorkshire pudding, fish and chips, shepherd's pie, 
+                              bangers and mash, and toad in the hole. Tea and scones are also an important part of English culinary culture.
+                              In addition to traditional dishes, English cuisine has also embraced global influences in recent years. There 
+                              is a growing emphasis on locally sourced, seasonal ingredients, and many chefs are incorporating new techniques 
+                              and flavors into their cooking.</p>
+                          </div>
+                        </body>
+                        </html>`
+            })
+            .otherwise({
+              template:`<html>
+                        <head>
+                          <style>
+                              #main{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                font-family: 'Calisto MT', serif;
+                              }
+                              #main>img{
+                                width: 450px;
+                                height: 450px;
+                                object-fit: cover;
+                              }
+                              #desc{
+                                width: 40%;
+                                text-align: justify;
+                                font-size: 12pt;
+                              }
+                          </style>
+                        </head>
+                        <body>
+                          <div id="main">
+                            <h1>Italian cuisine</h1>
+                            <img src="assets/italian.jpg">
+                            <p id="desc">Italian cuisine is known for its simplicity, quality ingredients, and regional diversity. 
+                              Pasta, pizza, and risotto are some of the most famous Italian dishes, 
+                              but there's much more to the cuisine than that. 
+                              Italian cooking emphasizes the use of fresh herbs, olive oil, and garlic, 
+                              and the importance of balancing flavors. Italian cuisine also features a wide range of cured 
+                              meats, cheeses, and bread, and regional specialties such as Tuscan steak, Neapolitan pizza, 
+                              and Sicilian seafood. Desserts like tiramisu and gelato are also popular. 
+                              Italian food is enjoyed around the world and has become an integral part 
+                              of many countries' culinary traditions.</p>
+                          </div>
+                        </body>
+                        </html>`
+            });
+        });
+      </script>
+    </div>
+    <br><hr>
+    <a href="#header">Return to top.</a>
+    <br>
+    <a href="main_page.html">Return to homepage.</a>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+ 	<link rel="stylesheet" href="styling.css">
+
+</head>
+<body>
+	<div class="fullpage">
+		<div id="nav">
+	    	<div>
+	    		<img id="pageturn" src="logo.png">
+	    	</div>
+	    	<div class="navspace">
+	     		<a href="\">HOME</a>
+	      		<a href="\register">CREATE ACCOUNT</a>
+	      		<a href="\book">BOOKS</a>
+	      	</div>
+	  	</div>
+
+	  	<div>
+	  		<img class="image" src="Screenshot 2023-04-21 011325.jpeg" alt="books">
+	  	</div>
+
+	  	<p class="nadula">For book lovers to connect with each other, discover new books, and track reading progress. Our platform is designed to make it easy for you to find your next favorite book and share your thoughts with the community.</p>
+
+	  	<div class="butt"><button><a href="Ex7.html">Get Started</a></button></div>
+	  		<br>
+	  		<br>
+
+	  	<div class="boxes">
+	  		<a href="Ex5.html"><div class="dabba">
+	  			<p>Show love to the books that you had a great time reading.</p>
+	  		</div></a>
+	  		<div class="dabba">
+	  			<p>Find new books (of any genre) and check out what other people are reading.</p>
+	  		</div>
+	  		<div class="dabba">
+	  			<p>Log the books that you’ve read and give them ratings. (if you’d want to)</p>
+	  		</div>
+	  	</div>
+
+	  	<br>
+
+	  	<div class="keela">
+		  	<div class="contact">
+		  		<p id="form_title">SIGN UP FOR OUR NEWSLETTER!</p>
+	            <form>
+	                <p> Email </p>
+	                <input class="field" id="email" type="text" oninput="e_validate()">
+	                <p id="e1"></p>
+	                <p> Phone number </p>
+	                <input class="field" id="ph_no" type="text" oninput="p_validate()">
+	                <p id="e2"></p>
+	                <input class="button" type="submit" placeholder="Submit">
+	            </form>
+		  	</div>
+
+		  	<div class="chatpanra">
+		  			<p id="kutty">NEED HELP? CHAT WITH US</p>	           
+		            <div id="chatWindow">
+		            </div>
+		            <div id="chatBox">
+		                <div>
+		                    <input type="text" class="chatField">
+		                    <button class="chatButton" onclick="sender1()"> Send </button>
+		                </div>
+		                <div>
+		                    <input type="text" class="chatField">
+		                    <button class="chatButton" onclick="sender2()"> Send </button>
+		                </div>
+		        	</div>
+		    </div>
+	    </div>
+
+  </div>
+
+  <div style="display: flex; justify-content: center;"><button onclick="getLocation()" class="butt2">Get Current Location</button></div>
+
+  	<footer style="background: #FFCD4E;">
+  		<p class="lastla">PageTurn Limited<br>Designed and Developed by Rohith Saravanan</p>
+  	</footer>
+  </div>
+
+ 	  <script>
+            function e_validate(){
+                var email = document.getElementById('email');
+                var emailRGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var error1 = document.getElementById('e1');
+                var emailResult = emailRGEX.test(email.value);        
+                if(!emailResult){
+                    error1.innerHTML = "Invalid email";
+                    email.style.borderColor = "red";
+                }
+                else{
+                    error1.innerHTML = "";
+                    email.style.borderColor = "black";
+                }      
+            }
+
+            function p_validate(){
+                var phoneNumber = document.getElementById('ph_no');
+                var phoneRGEX = /^[0-9]{10}$/;
+                var error2 = document.getElementById('e2');
+                var phoneResult = phoneRGEX.test(phoneNumber.value);        
+                if(!phoneResult){
+                    error2.innerHTML = "Invalid phone number";
+                    phoneNumber.style.borderColor = "red";
+                }
+                else{
+                    error2.innerHTML = "";
+                    phoneNumber.style.borderColor = 'black';
+                }
+            }      
+
+
+            function sender1(){
+                var x = document.querySelectorAll(".chatField");
+                var y = document.createElement('div');
+                y.className = 'mbox1';
+                y.textContent = x[0].value;
+                var z = document.getElementById("chatWindow");
+                z.appendChild(y);
+                x[0].value = '';
+            }
+
+            function sender2(){
+                var x = document.querySelectorAll(".chatField");
+                var y = document.createElement('div');
+                y.className = 'mbox2';
+                y.textContent = x[1].value;
+                var z = document.getElementById("chatWindow");
+                z.appendChild(y);
+                x[1].value = '';
+
+            }
+
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				} else {
+					alert("Geolocation is not supported by this browser.");
+				}
+			}
+			
+			function showPosition(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+			}
+  </script>
+
+</html>
+
+

@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" >
+        <style>
+            textarea{
+                width: 500px;
+                font-family: "Calibri", sans-serif;
+                font-size: 12pt;
+                padding: 10px;
+            }
+            .option_but{
+                width: 70px;
+                font-family: "Segoe UI", sans-serif;
+                padding: 3px;
+                color: white;
+                background-color: steelblue;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script>
+            angular.module('TEApp', [])
+            .controller('TECtrl', function($scope) {
+                $scope.text = '';
+                var undoStack = [];
+                var redoStack = [];
+                var uflag = 0;
+
+                $scope.save = function() {
+                    localStorage.setItem('text', $scope.text);
+                }
+    
+                $scope.load = function() {
+                    uflag=0;
+                    $scope.text = localStorage.getItem('text');
+                }
+
+                $scope.bold = function() {
+                    document.execCommand('bold', false, null);
+                }
+  
+                $scope.italic = function() {
+                    document.execCommand('italic', false, null);
+                }
+
+                $scope.undo = function() {
+                    uflag = 1;
+                    if (undoStack.length > 0) {
+                        redoStack.push($scope.text);
+                        $scope.text = undoStack.pop();
+                    }
+                }
+                
+                $scope.redo = function() {
+                    if (redoStack.length > 0) {
+                        undoStack.push($scope.text);
+                        $scope.text = redoStack.pop();
+                    }
+                }
+                
+                $scope.$watch('text', function(newValue, oldValue) {
+                    if ((newValue !== oldValue) && (uflag!=1)) {
+                        undoStack.push(oldValue);
+                        redoStack = [];
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body ng-app="TEApp">
+        <div id="banner">
+            <div id="header">
+                <p style="font-size: 20pt; border: solid 6px; padding: 20px;">Part 8: Text editor using Angular JS</p>
+                <a href="main_page.html" style="color:black"> Return to homepage.</a>
+            </div>
+            <img src="assets/hazard.jpg" width="400px">
+        </div>
+        <div id="contents" ng-controller="TECtrl">
+            <div id="text_editor">
+                <textarea ng-model="text" rows="20" contenteditable="true"></textarea>
+                <br><br>
+                <div style="display: flex; gap: 16px;">
+                    <button class="option_but" ng-click="save()">Save</button>
+                    <button class="option_but" ng-click="load()">Load</button>
+                    <button class="option_but" ng-click="bold()">Bold</button>
+                    <button class="option_but" ng-click="italic()">Italic</button>
+                    <button class="option_but" ng-click="undo()">Undo</button>
+                    <button class="option_but" ng-click="redo()">Redo</button>
+                </div>
+            </div>
+            <br><hr>
+            <a href="#header">Return to top.</a>
+            <br>
+            <a href="main_page.html">Return to homepage.</a>
+        </div>
+    </body>
+</html>

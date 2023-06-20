@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+  <h1>{{currentTime}}</h1>
+
+  <script>
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function($scope, $interval, timeService) {
+      $interval(function() {
+        $scope.currentTime = timeService.getTime();
+      }, 1000);
+    });
+
+    app.service('timeService', function() {
+      this.getTime = function() {
+        var d = new Date();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+        return hours + ":" + minutes + ":" + seconds;
+      };
+    });
+  </script>
+
+</body>
+
+</html>

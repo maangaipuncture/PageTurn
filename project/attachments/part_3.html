@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" >
+        <style>
+            #calc{
+                background-color: darkslategray;
+                padding: 10px;
+                width: 250px;
+                height: 350px;
+                border: solid black 3px;
+                border-radius: 3px;
+            }
+            .calcField{
+                height: 50px;
+                background-color:azure;
+                font-family: 'Segoe UI', sans-serif;
+                padding: 10px;
+                font-size: 15pt;
+                border: solid black 2px;
+            }
+            .calcOp{
+                font-family: 'Segoe UI', sans-serif;
+                padding: 5px;
+                text-align: center;
+                font-size: 15pt; 
+                background-color: azure;
+                border: solid black 2px;
+            }
+            #result{
+                margin-left: 50%;
+                height: 50px;
+                font-family: 'Segoe UI', sans-serif;
+                padding: 10px;
+                font-size: 15pt; 
+                background-color:azure;
+                border: solid black 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="banner">
+            <div id="header">
+                <p style="font-size: 20pt; border: solid 6px; padding: 20px;">Part 3: Simple calculator, Angular JS basics, search filters</p>
+                <a href="main_page.html" style="color:black"> Return to homepage.</a>
+            </div>
+            <img src="assets/hazard.jpg" width="400px">
+        </div>
+        <div id="contents">
+           <p>Simple calculator made using AngularJS</p>
+           <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+           <script>
+               angular.module('CalcApp', [])
+                   .controller('CalcCtrl', function($scope) {
+                   $scope.result = function() {
+                       if ($scope.operator == '+') {
+                           return $scope.a + $scope.b;
+                       }
+                       if ($scope.operator == '-') {
+                           return $scope.a - $scope.b;
+                       }
+                       if ($scope.operator == 'x') {
+                           return $scope.a * $scope.b;
+                       }
+                       if ($scope.operator == '/') {
+                           return $scope.a / $scope.b;
+                       }
+                   };
+               });
+           </script>
+           <div ng-app="CalcApp" ng-controller="CalcCtrl" id = "calc">
+                <p><input type="number" class="calcField" ng-model="a"></p>
+                <p><input type="number" class="calcField" ng-model="b"></p>
+                <p>
+                    <select ng-model="operator" class = "calcOp">
+                    <option>+</option>
+                    <option>-</option>
+                    <option>x</option>
+                    <option>/</option>
+                    </select>
+                </p>
+                <p id="result">{{ result() }}</p>
+            </div>
+            <br><hr>
+            <a href="#header">Return to top.</a>
+            <br>
+            <a href="main_page.html">Return to homepage.</a>
+        </div>
+    </body>
+</html>

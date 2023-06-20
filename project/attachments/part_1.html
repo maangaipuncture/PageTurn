@@ -1,0 +1,360 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" >
+        <style>
+            th{
+                background-color: black;
+                color: white;
+            }
+            td{
+                border: solid black;
+            }
+            form{
+                width: 300px;
+                background-color:  gainsboro;
+                color: black;
+                padding: 10px;
+            }
+            input[type="submit"]{
+                background-color: black;
+                color: white;
+                padding: 10px;
+            }
+            #geoloc{
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 12pt;
+                font-weight: bold;
+            }
+            #anime{
+                width: 50px;
+                height: 50px;
+                background-color: red;
+                color: white;
+                border-radius: 20px;
+                font-size: 10pt;
+                text-align: center;
+                border: solid black;
+                position: relative;
+                animation-name: looper;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+            }
+            @keyframes looper{
+                0%   {background-color: rgb(130, 0, 0); left:0px;}
+                25%  {background-color:rgb(190, 0, 0); left:200px;}
+                50%  {background-color: rgb(210, 0, 0); left:600px;}
+                75%  {background-color:rgb(255, 0, 0); left:1000px;}
+                100% {background-color:rgb(130, 0, 0); left:0px;}
+            }
+            #transit{
+                width: 100px;
+                height: 20px;
+                font-size: 10pt;
+                background-color: rgb(255, 115, 0);
+                padding: 10px;
+                color: whitesmoke;
+                transition: width 2s, height 2s, font-size 2s, background-color 2s;
+            }
+            #transit:hover{
+                width: 200px;
+                height: 30px;
+                font-size: 20pt;
+                background-color: orangered;
+            }
+        </style>
+        <script>
+            function draw() {
+                const canvas = document.getElementById("canvas");
+                if (canvas.getContext) {
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.beginPath();
+                    ctx.moveTo(25, 25);
+                    ctx.lineTo(105, 25);
+                    ctx.lineTo(25, 105);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.moveTo(125, 125);
+                    ctx.lineTo(125, 45);
+                    ctx.lineTo(45, 125);
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+            }
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function showPosition(position) {
+                var x = document.getElementById("geoloc");
+                x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="banner">
+            <div id="header">
+                <p style="font-size: 20pt; border: solid 6px; padding: 20px;"> Part 1: HTML 4 & 5 + CSS 2 & 3 </p>
+                <a href="main_page.html" style="color:black"> Return to homepage.</a>
+            </div>
+            <img src="assets/hazard.jpg" width="300px">
+        </div>
+        <div id="contents">
+            <p>
+                HTML is used for creating the primary content of a webpage, giving it a structure.
+            </p>
+            <p>
+                HTML-4 elements include...
+            </p>
+            <ul>
+                <li> Horizontal rule - a horizontal line to visually separate elements. </li>
+                <hr>
+                <li> Hyperlinks - can connect two elements of a page:
+                    <a href="#HTML5" style="color:blue"> internal hyperlink</a> (this one goes to HTML-5 elements) or two separate pages:
+                    <a href="main_page.html" style="color:blue"> external hyperlink</a> (this one goes to the homepage).
+                </li>
+                <br>
+                <li>
+                    Images - can be inserted in a page.
+                    <br>
+                    <img src="assets/smiley.png" width="200px">
+                </li>
+                <li>
+                    Lists - can be...
+                    <div style="display: flex; gap: 50px;">
+                        <ul style="background-color: rgb(238, 238, 178); width: 170px; height: 250px;">
+                            <p> Unordered</p>
+                            <p>Things to buy</p>
+                            <li>Soap</li>
+                            <li>Cashews</li>
+                            <li>Bread</li>
+                            <li>Cheese</li>
+                            <li>Towel</li>
+                        </ul>
+                        <ol type="i" style="background-color: rgb(188, 249, 249); width: 170px; height: 250px;">
+                            <p> Ordered</p>
+                            <p>Months</p>
+                            <li>January</li>
+                            <li>February</li>
+                            <li>March</li>
+                            <li>April</li>
+                            <li>May</li>
+                        </ol>
+                    </div>
+                    <br>
+                </li>
+                <li> Meta - a tag containing metadata (data about the page itself), such as
+                     charset, viewport information, description, or keywords.
+                </li>
+                <li> Simple tables - defined using thead (header), tr (table row), tbody (table body), th (header cell), and td (body cell).
+                    <br><br>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> header 1 </th>
+                                <th> header 2 </th>
+                                <th> header 3 </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> body 1</td>
+                                <td> body 2 </td>
+                                <td> body 3 </td>
+                            </tr>
+                            <tr>
+                                <td> body 4 </td>
+                                <td> body 5 </td>
+                                <td> body 6 </td>
+                            </tr>
+                            <tr>
+                                <td> body 7 </td>
+                                <td> body 8 </td>
+                                <td> body 9 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+               </li>
+               <br>
+               <li>
+                    Forms - used to get user-input data, using input elements/fields (many input types: text, password, number).
+                    <br><br>
+                    <form>
+                        <p style="text-decoration: underline solid;"> Login</p>
+                        <hr>
+                        <p> Username </p>
+                        <input type="text">
+                        <p> Password </p>
+                        <input type="password">
+                        <br><br>
+                        <input type="submit" placeholder="Submit">
+                    </form>
+               </li>
+               <br>
+               <li>
+                    Frames - used to display a HTML page within a window in another HTML page.
+                    <br><br>
+                    <iframe src="main_page.html" title="Homepage" width="80%"></iframe>
+               </li>
+               <br>
+               <li>
+                    Hotspots/image maps - used to create an image with clickable links.
+                    <br>
+                    Clicking on Tom goes to the Wikipedia page for cat, while clicking on Jerry goes to the Wikipedia page for mouse.
+                    <br><br>
+                    <img src="assets/cat_n_mouse.png" usemap="#catmap" width="500">
+                    <map name="catmap">
+                        <area shape="rect" coords="0, 0, 400, 267.52" href="https://en.wikipedia.org/wiki/Cat">
+                        <area shape="rect" coords="400, 0, 500, 267.52" href="https://en.wikipedia.org/wiki/Mouse">
+                    </map>
+               </li>
+            </ul>
+            <br><br>
+            <p id="HTML5">
+                HTML-5 elements include...
+            </p>
+            <ul>
+                <li>
+                    Audio - to insert an audio recording in a HTML page.
+                    <br><br>
+                    <audio controls>
+                        <source src="assets/JJK audio.mpeg" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </li>
+                <br>
+                <li>
+                    Video - to insert a video recording in a HTML page.
+                    <br><br>
+                    <video width="400" height="400" controls>
+                        <source src="assets/capy.webm" type="video/webm">
+                        <source src="assets/capy.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </li>
+                <br>
+                <li>
+                    SVG (Scalable Vector Graphics) - draw shapes/logos using XML.
+                    <br><br>
+                    <svg width="300" height="200">
+                        <polygon points="100,0 50,100 200,100"
+                        style="fill: red ;stroke: gold;stroke-width:5;"/>
+                    </svg>
+                </li>
+                <li>
+                    Canvas API - draw shapes/logos using Javascript and Canvas.
+                    <br><br>
+                    <button onclick="draw()">Draw picture</button>
+                    <br>
+                    <canvas id="canvas"></canvas>
+                </li>
+                <li>
+                    Geolocation - returns accurate location data.
+                    <br><br>
+                    <button onclick="getLocation()">Get location data</button>
+                    <br><br>
+                    <div id="geoloc"></div>
+                </li>
+            </ul>
+            <br><br>
+            <p>
+                CSS enables you to distinguish between presentation and content by modifying 
+                the design and display of HTML elements.
+            </p>
+            <p>
+                CSS-2 concepts
+            </p>
+            <hr>
+            <p> The box model </p>
+            <img src="assets/box_model.png" width="500px">
+            <ul>
+                <li>
+                    Margin - the space between element and others surrounding it.
+                    <br>
+                    Padding - the space between element and its own border.
+                </li>
+                <br>
+                <li>
+                    Padding/margin can be inline (horizontal spacing) or block (vertical spacing).
+                </li>
+                <br>
+                <li>
+                   Border - the line of separation between the element and others surrounding it.
+                </li>
+            </ul>
+            <hr>
+            <p>Types of CSS (where it can be placed)</p>
+            <ul>
+                <li>Inline - located in the tag of the element</li>
+                <br>
+                <li>Internal - located in the style div in the document head</li>
+                <br>
+                <li>External - located in an external stylesheet (linked in document head)</li>
+                <br>
+            </ul>
+            <img src="assets/CSS_types.png" width="500px">
+            <p>
+                CSS-3 concepts
+            </p>
+            <hr>
+            <ul>
+                <li>
+                    Border styling - border width, type, and color can be adjusted for each edge of a div, as well as border radius.
+                    <br><br>
+                    <div style="display: flex; align-items: center;justify-content: space-around;">
+                        <div style="border: solid red; width: 200px;"> solid red </div>
+                        <div style="border: dashed dodgerblue; width: 200px;"> dashed blue </div>
+                        <div style="border: double green 5px; width: 200px;"> double green </div>
+                        <div style="border: solid gold 10px; width: 200px;"> thick gold </div>
+                        <div style="border-style: dotted dotted dashed dashed; border-color: purple; width: 200px;"> dotted-dashed purple </div>
+                        <div style="border: solid turquoise; border-radius: 10px; width: 200px;"> rounded edges turquoise</div>
+                    </div>
+                </li>
+                <br>
+                <li>
+                    Text effects - text can be changed in font, size, color, and style, as well as effects like shadow and strikethrough.
+                    <br><br>
+                    <div style="display: flex; align-items: center;justify-content: space-around;">
+                        <div style="font-family: 'Times New Roman', Times, serif;"> Serif text</div>
+                        <div style="font-size: 25pt;"> Large text</div>
+                        <div style="font-style: italic;"> Italic text </div>
+                        <div style="color: red"> Red text </div>
+                        <div style="text-shadow: 2px 2px turquoise;"> Text shadow </div>
+                        <div style="text-decoration: line-through solid;"> Strikethrough text</div>
+                        <div style="text-decoration: underline solid;"> Underlined text</div>
+                    </div>
+                </li>
+                <br>
+                <li>
+                    Animations - CSS animations allow elements to change style properties in different ways dynamically.
+                    The div below changes position and color dynamically.
+                    <br><br>
+                    <div id="anime">
+                        catch me!
+                    </div>
+                </li>
+                <br>
+                <li>
+                    Transitions - animations that require a triggering event.
+                    They have only start and end states (no in-between states).
+                    <br><br>
+                    <div id="transit">
+                        Hover over me!
+                    </div>
+                </li>
+            </ul>
+            <br><hr>
+            <a href="#header">Return to top.</a>
+            <br>
+            <a href="main_page.html">Return to homepage.</a>
+        </div>
+    </body>
+</html>

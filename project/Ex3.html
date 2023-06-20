@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Search Filters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      var app = angular.module("myApp", []);
+      app.controller("myCtrl", function($scope) {
+        $scope.people = [
+          {title: "The Godfather", author: "Mario Puzo", pub: "Penguin Publishing House"},
+          {title: "The Monk Who Sold his Ferrari", author: "Robin Sharma", pub: "Jaico Publishing"},
+          {title: "To Kill a Mockingbird", author: "Harper Lee", pub: "Penguin Publishing House"},
+          {title: "As I Lay Dying", author: "William Faulkner", pub: "Simon and Schuster"},
+          {title: "New Simplified Physics", author: "SL Arora", pub: "Dhanpat Rai Publications"}
+        ];
+      });
+
+      angular.module('CalcApp', [])
+                   .controller('CalcCtrl', function($scope) {
+                   $scope.result = function() {
+                       if ($scope.operator == '+') {
+                           return $scope.a + $scope.b;
+                       }
+                       if ($scope.operator == '-') {
+                           return $scope.a - $scope.b;
+                       }
+                       if ($scope.operator == 'x') {
+                           return $scope.a * $scope.b;
+                       }
+                       if ($scope.operator == '/') {
+                           return $scope.a / $scope.b;
+                       }
+                   };
+               });
+     </script>
+
+  <style>
+
+    .fullpage {
+      padding-inline: 10%;
+    }
+
+    #pageturn {
+      width: 200px;
+    }
+
+    #nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+/*      background-color: #EFEFF0;*/
+      padding-inline: 1rem;
+    }
+
+    .navspace {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5rem;
+      padding-inline: 1rem;
+    }
+
+    .lastla {
+      font-family: 'PT Serif';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      text-align: left;
+      color: #113599;
+      padding-block: 100px;
+      padding-left: 10%;
+    }
+
+    h1,a {
+      font-family: 'Poppins', 'Helvetica', serif;
+      font-style: normal;
+      font-weight: 700;
+      color: #113599;
+      text-align: left;
+      text-decoration-line: none;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .space {
+      padding-block: 100px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="fullpage">
+    <div id="nav">
+        <div>
+          <img id="pageturn" src="logo.png">
+        </div>
+        <div class="navspace">
+          <a href="Homepage.html">HOME</a>
+            <a href="#"></a>
+        </div>
+    </div>
+
+    <div ng-controller="myCtrl">
+      <h1>AngularJS Search Filters</h1>
+      <input type="text" ng-model="search" placeholder="Search...">
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Publishing House</th>
+        </tr>
+        <tr ng-repeat="person in people | filter:search">
+          <td>{{person.title}}</td>
+          <td>{{person.author}}</td>
+          <td>{{person.pub}}</td>
+        </tr>
+      </table>
+    </div>
+
+     <div ng-app="CalcApp" ng-controller="CalcCtrl" id = "calc" style="padding-top:100px;">
+      <h3 style="font-family: Poppins">FOR CALCULATION PURPOSES ;)</h3>
+                <p><input type="number" class="calcField" ng-model="a"></p>
+                <p><input type="number" class="calcField" ng-model="b"></p>
+                <p>
+                    <select ng-model="operator" class = "calcOp">
+                    <option>+</option>
+                    <option>-</option>
+                    <option>x</option>
+                    <option>/</option>
+                    </select>
+                </p>
+                <p id="result">{{ result() }}</p>
+    </div>
+    <div class="space"></div>
+    <br>
+  </div>
+
+    <footer style="background: #FFCD4E;">
+    <p class="lastla">PageTurn Limited<br>Designed and Developed by Rohith Saravanan</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ex4</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  	<link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    
+
+  	<style>
+
+    .fullpage {
+      padding-inline: 10%;
+    }
+
+    .lastla {
+		font-family: 'PT Serif';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 26px;
+		text-align: left;
+		color: #113599;
+		padding-block: 100px;
+		padding-left: 10%;
+	}
+
+
+    h1,a {
+      font-family: 'Poppins', 'Helvetica', serif;
+      font-style: normal;
+      font-weight: 700;
+      color: #113599;
+      text-align: center;
+      text-decoration-line: none;
+    }
+
+    #pageturn {
+      width: 200px;
+    }
+
+    #nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+/*      background-color: #EFEFF0;*/
+      padding-inline: 1rem;
+    }
+
+    .navspace {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5rem;
+      padding-inline: 1rem;
+    }
+
+    	#navbar {
+    		display: flex;
+    		justify-content: flex-start;
+    		gap: 15px;
+    	}
+
+    #contents {
+    	padding-inline: 10px;
+    } 
+    </style>
+
+</head>
+
+	 <body ng-app="myApp">	
+	  <div class="fullpage">
+		<div id="nav">
+	    	<div>
+	    		<img id="pageturn" src="logo.png">
+	    	</div>
+	    	<div class="navspace">
+	     		<a href="Homepage.html">HOME</a>
+	      		<a href="#"></a>
+	    	</div>
+	  	</div>
+	  	<h1 style="text-align: left; padding-left: 24px;" >CHECK REVIEWS OF POPULAR BOOKS</h1>
+	    <div id="contents">
+	      <div id="navbar">
+	        <a href="#/!"></a>
+	        <div><a href="#!italian" style="background: #FFCD4E;">A TALE OF TWO CITIES</a></div>
+	        <div><a href="#!japanese" style="background: #FFCD4E;">THE SAILOR WHO FELL FROM GRACE WITH THE SEA</a></div>
+	        <div><a href="#!indian" style="background: #FFCD4E;">WAR AND PEACE</a></div>
+	        <div><a href="#!english" style="background: #FFCD4E;">PRIDE AND PREJUDICE</a></div>
+	      </div>
+	      <div ng-view></div>
+	      <script>
+	        const app = angular.module("myApp", ["ngRoute"]);
+	        app.config(function ($routeProvider) {
+	          $routeProvider
+	            .when("/italian", {
+	              template:`<html>
+	                        <head>
+	                          <style>
+	                              #main{
+	                                width: 100%;
+	                                display: flex;
+	                                flex-direction: column;
+	                                justify-content: center;
+	                                align-items: center;
+	                                font-family: 'PT Serif', serif;
+	                              }
+	                              #main>img{
+	                                width: 450px;
+	                                height: 450px;
+	                                object-fit: cover;
+	                              }
+	                              #desc{
+	                                width: 40%;
+	                                text-align: justify;
+	                                font-size: 12pt;
+	                                background-color: #EFEFF0;
+	                                padding: 20px;
+	                              }
+	                              button {
+	                              	background-color: #FFCD4E;
+	                              	height: 50px;
+	                              	width: 150px;
+	                              }
+	                              .butt{
+	                              	padding-block: 2rem;                              	
+	                              	display: flex;
+	                              	align-items: center;
+	                              	justify-content: center;
+	                              }
+	                          </style>
+	                        </head>
+	                        <body>
+	                          <div id="main">
+	                            <h1>A Tale of Two Cities</h1>
+	                            <img src="tale2cities.jpg	">
+	                            <p id="desc">A clear depiction of the historical French revolution and the reign of terror. It's interesting, as the scene shifts from one city to the other in a story of brutality repression on one side and love, idealism and self-sacrifice on the other. There's also an interesting twist in the climax of the plot. A must read book, also based on both positive and negative aspects. Read this book, you will become a huge fan of Dickens' works.</p>
+	                          </div>
+
+	                          <div class="butt"><button><a href="Ex8.html">WRITE A REVIEW</a></button></butt>
+	                        </body>
+	                        </html>`
+	            })
+	            .when("/japanese", {
+	              template: `<html>
+	                        <head>
+	                          <style>
+	                              #main{
+	                                width: 100%;
+	                                display: flex;
+	                                flex-direction: column;
+	                                justify-content: center;
+	                                align-items: center;
+	                                font-family: 'PT Serif', serif;
+	                              }
+	                              #main>img{
+	                                width: 450px;
+	                                height: 450px;
+	                                object-fit: cover;
+	                              }
+	                              #desc{
+	                                width: 40%;
+	                                text-align: justify;
+	                                font-size: 12pt;
+	                                background-color: #EFEFF0;
+	                                padding: 20px;
+	                              }
+	                              button {
+	                              	background-color: #FFCD4E;
+	                              	height: 50px;
+	                              	width: 150px;
+	                              }
+	                              .butt{
+	                              	padding-block: 2rem;                              	
+	                              	display: flex;
+	                              	align-items: center;
+	                              	justify-content: center;
+	                              }
+	                          </style>
+	                        </head>
+	                        <body>
+	                          <div id="main">
+	                            <h1>The Sailor Who Fell From Grace with the Sea</h1>
+	                            <img src="71fgoW6cutL.jpg">
+	                            <p id="desc">Bugüne kadar yazdığım yorumları okuyanlar genel olarak kişisel duyguları eleştiriye katmadığımı fark etmiştir. Okuduğum o kadar kitaptan sonra öldüm, bittim, beni mahvetti tarzı metni anlama, anlatmaktan çok salt bıraktığı kişisel etkiyi öne çıkarmak bana yeterli ve tek başına anlamlı gelmiyor. Ama bu genel kuralın esnediği nadir anlar var ve artık o nadide eserlerin en başlarında Denizi Yitiren Denizci’de yer alıyor.</p>
+	                          </div>
+	                          <div class="butt"><button><a href="Ex8.html">WRITE A REVIEW</a></button></butt>
+	                        </body>
+	                        </html>`
+	            })
+	            .when("/indian", {
+	              template:`<html>
+	                        <head>
+	                          <style>
+	                              #main{
+	                                width: 100%;
+	                                display: flex;
+	                                flex-direction: column;
+	                                justify-content: center;
+	                                align-items: center;
+	                                font-family: 'PT Serif', serif;
+	                              }
+	                              #main>img{
+	                                width: 450px;
+	                                height: 450px;
+	                                object-fit: cover;
+	                              }
+	                              #desc{
+	                                width: 40%;
+	                                text-align: justify;
+	                                font-size: 12pt;
+	                                background-color: #EFEFF0;
+	                                padding: 20px;
+	                              }
+	                              button {
+	                              	background-color: #FFCD4E;
+	                              	height: 50px;
+	                              	width: 150px;
+	                              }
+	                              .butt{
+	                              	padding-block: 2rem;                              	
+	                              	display: flex;
+	                              	align-items: center;
+	                              	justify-content: center;
+	                              }
+	                          </style>
+	                        </head>
+	                        <body>
+	                          <div id="main">
+	                            <h1>War and Peace</h1>
+	                            <img src="A1aDb5U5myL.jpg">
+	                            <p id="desc">Leo Tolstoy has masterfully depicted the pathetic reality of wars. The descriptions of the sufferings, wounds and casualties are emotionally provoking. He made the story turn from pleasure to patriotism, luxury to bravery, aristocracy to extremity. The picturesque beauty of love and life fill the reader's heart with fresh blossoming buds of hope and divine goodness. The characters learn from the merry  as well as bitter experiences of life in peace and during wars. The translation that I read (by Louise and Aylmer Maude) has successfully borne Tolstoy's understanding of the different shades of life and history.
+	In short, War and Peace, with its short chapters, lucid narrative, merry ideas, attractive character building capacity, and educational values is an interesting read and I would advise this timeless novel to any regular reader.</p>
+	                          </div>
+	                          <div class="butt"><button><a href="Ex8.html">WRITE A REVIEW</a></button></butt>
+	                        </body>
+	                        </html>`
+	            })
+	            .when("/english", {
+	              template:`<html>
+	                        <head>
+	                          <style>
+	                              #main{
+	                                width: 100%;
+	                                display: flex;
+	                                flex-direction: column;
+	                                justify-content: center;
+	                                align-items: center;
+	                                font-family: 'PT Serif', serif;
+	                              }
+	                              #main>img{
+	                                width: 450px;
+	                                height: 450px;
+	                                object-fit: cover;
+	                              }
+	                              #desc{
+	                                width: 40%;
+	                                text-align: justify;
+	                                font-size: 12pt;
+	                                background-color: #EFEFF0;
+	                                padding: 20px;
+	                              }
+	                              button {
+	                              	background-color: #FFCD4E;
+	                              	height: 50px;
+	                              	width: 150px;
+	                              }
+	                              .butt{
+	                              	padding-block: 2rem;                              	
+	                              	display: flex;
+	                              	align-items: center;
+	                              	justify-content: center;
+	                              }
+	                          </style>
+	                        </head>
+	                        <body>
+	                          <div id="main">
+	                            <h1>Pride and Prejudice</h1>
+	                            <img src="MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg">
+	                            <p id="desc">Undoubtedly,
+	     The best book i have ever read !! Pride and prejudice is a book that is must read for every person.starting of the  some pages it must be hard to understand bcoz of different character but the beauty of the different characters, language nd play of words is a tremendous,that the reader is compelled, stick nd just go on reading.
+	  The novel makes us aware of the people like Wickham & also of the consequences of being haughty as Darcy. The novel revolves around the importance of marrying for love, not simply for economic gain or social prestige, despite the communal pressure to make a good.
+	      Darcy also wins the reader's heart gradually.He too became my favourite character gradually.This story made me credulous about hatred transforming into deep love.l recommend everyone to read this awesome work by the prolific author.</p>
+	                          </div>
+	                          <div class="butt"><button><a href="Ex8.html">WRITE A REVIEW</a></button></butt>
+	                        </body>
+	                        </html>`
+	            })
+	            .otherwise({
+	              template:`<html>
+	                        <head>
+	                          <style>
+	                              #main{
+	                                width: 100%;
+	                                display: flex;
+	                                flex-direction: column;
+	                                justify-content: center;
+	                                align-items: center;
+	                                font-family: 'PT Serif', serif;
+	                              }
+	                              #main>img{
+	                                width: 450px;
+	                                height: 450px;
+	                                object-fit: cover;
+	                              }
+	                              #desc{
+	                                width: 40%;
+	                                text-align: justify;
+	                                font-size: 12pt;
+	                                background-color: #EFEFF0;
+	                                padding: 20px;
+	                              }
+	                              button {
+	                              	background-color: #FFCD4E;
+	                              	height: 50px;
+	                              	width: 150px;
+	                              }
+	                              .butt{
+	                              	padding-block: 2rem;                              	
+	                              	display: flex;
+	                              	align-items: center;
+	                              	justify-content: center;
+	                              }
+	                          </style>
+	                        </head>
+	                        <body>
+	                          <div id="main">
+	                            <h1>A Tale of Two Cities</h1>
+	                            <img src="tale2cities.jpg">
+	                            <p id="desc">A clear depiction of the historical French revolution and the reign of terror. It's interesting, as the scene shifts from one city to the other in a story of brutality repression on one side and love, idealism and self-sacrifice on the other. There's also an interesting twist in the climax of the plot. A must read book, also based on both positive and negative aspects. Read this book, you will become a huge fan of Dickens' works.</p>
+	                          </div>
+	                          <div class="butt"><button><a href="Ex8.html">WRITE A REVIEW</a></button></butt>
+	                        </body>
+	                        </html>`
+	            });
+	        });
+	      </script>
+	    </div>
+	    <br>
+	</div>
+	<footer style="background: #FFCD4E;">
+  	<p class="lastla">PageTurn Limited<br>Designed and Developed by Rohith Saravanan</p>
+  	</footer>
+</body>
+</html>

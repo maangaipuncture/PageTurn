@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" >
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <script>
+		var app = angular.module('myApp', ['ngAnimate']);
+		app.controller('myCtrl', function($scope) {
+			$scope.boxes = [];
+			$scope.addBox = function() {
+				$scope.boxes.push($scope.boxes.length + 1);
+			}
+		});
+	</script>
+	<style>
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: azure;
+			margin: 10px;
+			float: left;
+            animation: slidein 1s;
+			animation-fill-mode: forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 15pt;
+            color: white;
+		}
+		
+		@keyframes slidein {
+			from {
+				transform: translateX(-100%);
+                transform: translateY(-100%);
+                background-color: black;
+                color: rgb(256, 206, 38);
+			}
+			to {
+				transform: translateX(0%);
+                transform: translateY(0%);
+                background-color: rgb(256, 206, 38);
+                color: black;
+                border: solid black;
+			}
+		}
+        #contents{
+            display: flex;
+            flex-direction: column;
+        }
+        .trigger{
+            height: 50px;
+            width: 100px;
+            background-color: black;
+            font-family: 'Helvetica Neue', sans-serif;
+            padding: 10px;
+            font-size: 12pt;
+            color: white;
+            margin-left: 12px;
+        }
+	</style>
+</head>
+<body>
+    <div id="banner">
+        <div id="header">
+            <p style="font-size: 20pt; border: solid 6px; padding: 20px;">Part 4: Animations in AngularJS</p>
+            <a href="main_page.html" style="color:black"> Return to homepage.</a>
+        </div>
+        <img src="assets/hazard.jpg" width="400px">
+    </div>
+    <div id="contents">
+        <div style="display: flex; flex-direction: column;" ng-controller="myCtrl">
+            <button class="trigger" ng-click="addBox()">Add Box</button>
+            <div>
+                <div ng-repeat="box in boxes" class="box" ng-animate="'animate'">{{box}}</div>
+            </div>
+        </div>
+        <br><hr>
+        <a href="#header">Return to top.</a>
+        <br>
+        <a href="main_page.html">Return to homepage.</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" >
+        <style>
+            form{
+                width: 30%;
+                border: solid black 2px;
+                padding: 10px;
+
+            }
+            #form_title{
+                text-decoration: underline solid; 
+                background-color:dodgerblue; 
+                height: 5%;
+                width: 17.5%;
+                padding: 10px; 
+                color: ivory;
+                margin:0;
+            }
+            .field{
+                height: 40px;
+                width: 250px;
+                font-family: "Helvetica Neue", "Arial", sans-serif;
+                font-size: 10pt;
+                padding: 5px;
+            }
+            .button{
+                height: 40px;
+                width: 100px;
+                font-family: "Helvetica Neue", "Arial", sans-serif;
+                background-color: black;
+                color: white;
+            }
+            #e1, #e2{
+                font-family: "Helvetica Neue", "Arial", sans-serif;
+                font-size: 10pt;
+            }
+            #samples{
+                display: flex;
+                gap: 15px;
+                margin-top: 20px;
+            }
+            #chatWindow{
+                background-color: azure;
+                width: 35%;
+                height: 200px;
+                border: solid black 3px;
+                font-family: "Helvetica Neue", "Arial", sans-serif;
+                display: flex;
+                flex-direction: column;
+                overflow-y: scroll;
+            }
+            #chatBox{
+                font-family: "Helvetica Neue", "Arial", sans-serif;
+                display: flex;
+                gap: 80px;
+            }
+            .chatField{
+                height: 30px;
+                margin-top: 10px;
+                border: solid black 2px;
+                border-radius: 5px;
+            }
+            .chatButton{
+                height: 30px;
+                border-radius: 8px;
+                background-color: dodgerblue;
+                color: white;
+            }
+            .mbox1{
+                height: fit-content;
+                width: fit-content;
+                font-family: "PT Serif", "Arial", sans-serif;
+                font-size: 12pt;
+                color: white;
+                background-color: dodgerblue;
+                margin-left: 5px;
+                margin-right: auto;
+                margin-top: 5px;
+                padding: 5px;
+                border-radius: 2px;
+            }
+            .mbox2{
+                height: fit-content;
+                width: fit-content;
+                font-family: "PT Serif", "Arial", sans-serif;
+                font-size: 12pt;
+                color: black;
+                background-color: gainsboro;
+                margin-left: auto;
+                margin-right: 5px;
+                margin-top: 5px;
+                padding: 5px;
+                border-radius: 2px;
+            }
+        </style>
+        <script>
+            function e_validate(){
+                var email = document.getElementById('email');
+                var emailRGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var error1 = document.getElementById('e1');
+                var emailResult = emailRGEX.test(email.value);        
+                if(!emailResult){
+                    error1.innerHTML = "Invalid email";
+                    email.style.borderColor = "red";
+                }
+                else{
+                    error1.innerHTML = "";
+                    email.style.borderColor = "black";
+                }      
+            }
+
+            function p_validate(){
+                var phoneNumber = document.getElementById('ph_no');
+                var phoneRGEX = /^[0-9]{10}$/;
+                var error2 = document.getElementById('e2');
+                var phoneResult = phoneRGEX.test(phoneNumber.value);        
+                if(!phoneResult){
+                    error2.innerHTML = "Invalid phone number";
+                    phoneNumber.style.borderColor = "red";
+                }
+                else{
+                    error2.innerHTML = "";
+                    phoneNumber.style.borderColor = 'black';
+                }      
+            }
+
+            function changeText(){
+                var x = document.querySelector("#samples :nth-child(1)");
+                x.textContent = "Tom and Jerry";
+            }
+
+            function changeStyle(){
+                var x = document.querySelector("#samples :nth-child(2)");
+                x.style.backgroundColor = "slategray";
+                x.style.color = "white";
+            }
+
+            function addElement(){
+                var x = document.querySelector("#samples :nth-child(3)");
+                var y = document.createElement('img');
+                y.src = 'assets/cat_n_mouse.png';
+                y.style.width = '100px';
+                x.appendChild(y);
+            }
+
+            function sender1(){
+                var x = document.querySelectorAll(".chatField");
+                var y = document.createElement('div');
+                y.className = 'mbox1';
+                y.textContent = x[0].value;
+                var z = document.getElementById("chatWindow");
+                z.appendChild(y);
+                x[0].value = '';
+            }
+
+            function sender2(){
+                var x = document.querySelectorAll(".chatField");
+                var y = document.createElement('div');
+                y.className = 'mbox2';
+                y.textContent = x[1].value;
+                var z = document.getElementById("chatWindow");
+                z.appendChild(y);
+                x[1].value = '';
+            }
+        </script>
+    </head>
+    <body>
+        <div id="banner">
+            <div id="header">
+                <p style="font-size: 20pt; border: solid 6px; padding: 20px;"> Part 2: Form validation, DOM manipulation, Simple Messaging Service </p>
+                <a href="main_page.html" style="color:black"> Return to homepage.</a>
+            </div>
+            <img src="assets/hazard.jpg" width="400px">
+        </div>
+        <div id="contents">
+            <p>Form validation using regular expression</p>
+            <p id="form_title">Contact details</p>
+            <form>
+                <p> Email </p>
+                <input class="field" id="email" type="text" oninput="e_validate()">
+                <p id="e1"></p>
+                <p> Phone number </p>
+                <input class="field" id="ph_no" type="text" oninput="p_validate()">
+                <p id="e2"></p>
+                <input class="button" type="submit" placeholder="Submit">
+            </form>
+            <hr>
+            <p>DOM manipulation using Javascript</p>
+            <div style="display: flex; gap: 20px;">
+                <button class="button" onclick="changeText()">Change text</button>
+                <button class="button" onclick="changeStyle()">Change style</button>
+                <button class="button" onclick="addElement()">Add element</button>
+            </div>
+            <div id="samples">
+                <div style="width: 200px; border: solid black; padding: 5px;">
+                    Tom
+                </div>
+                <div style="width: 200px; border: solid black; padding: 5px">
+                    Tom
+                </div>
+                <div style="width: 200px; border: solid black; padding: 5px; display: flex; flex-direction: column;">
+                    Tom
+                </div>
+            </div>
+            <hr>
+            <p>Simple messaging service</p>
+            <div id="chatWindow">
+            </div>
+            <div id="chatBox">
+                <div>
+                    <input type="text" class="chatField">
+                    <button class="chatButton" onclick="sender1()"> Send </button>
+                </div>
+                <div>
+                    <input type="text" class="chatField">
+                    <button class="chatButton" onclick="sender2()"> Send </button>
+                </div>
+            </div>
+            <br><hr>
+            <a href="#header">Return to top.</a>
+            <br>
+            <a href="main_page.html">Return to homepage.</a>
+        </div>
+    </body>
+</html>

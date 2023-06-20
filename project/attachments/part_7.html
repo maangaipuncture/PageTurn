@@ -1,0 +1,166 @@
+<html ng-app="videoApp">
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" >
+        <style>
+            html, body {
+                padding:0;
+                margin:0;
+                overflow:hidden;
+            }
+
+            .videoDiv{
+            width: 700px;
+            height:500px;
+            margin:0 auto;
+            }
+
+            .embedded{
+                width: fit-content;
+                border: solid black;
+                background-color: #333333;
+            }
+            #videoDisplay {
+                background-color: black;
+            }
+
+
+            #playerToolBar {
+                background-color: #464545;
+            }
+            #playerToolBar a {
+                font-size: 1.2em;
+                color: #b8b8bb;
+            }
+            #playerToolBar .btn {
+                border-radius:0px;
+                width: 40px;
+                height:40px;
+            }
+            #playerToolBar .glyphicon {
+                top: -1px;
+                left:-5px;
+            }
+            #playerToolBar .btn:focus {
+                border: none;
+                box-shadow: 0;
+                outline: 0 none;
+            }
+            #videoTime {
+                position: relative;
+                top:3px;
+                left:12px;
+                font-size: 1.1em;
+                color: #c0c0c0;
+            }
+
+            #bigPlayButton {
+                background-color: rgba(0, 0, 0, 0.78);
+                width:100px;
+                height:100px;
+                position:absolute;
+                font-size: 3.2em;
+                cursor: pointer;
+                text-align: center;
+            }
+            #videoTitle {
+                position: absolute;
+                top:0px;
+                left:0px;
+                font-size: 1.3em;
+                color: whitesmoke;
+                width:100%;
+                margin:5px;
+                margin-left:10px;
+                text-shadow: 1px 1px #333333;
+            }
+
+            #progressMeterFull, #progressMeter {
+                cursor: pointer;
+                height:11px;
+                margin:0;
+            }
+            #progressMeterFull {
+                background-color: #5e6368;
+                position: relative;
+            }
+            #progressMeter {
+                background-color: red;
+                position: absolute;
+                top:0px;
+                left:0px;
+                width:0px;
+            }
+
+            #thumbScrubber {
+                background-color: #b8b8bb;
+                border: 1px solid #3d3d3d;
+                width:15px;
+                height:15px;
+                border-radius: 15px;
+                position:absolute;
+                top:-1000px;
+                left:-1000px;
+                cursor: pointer;
+            }
+            
+            #vidURL{
+                width: 400px;
+                height: 50px;
+                padding: 10px;
+                font-size: 12pt;
+                border-radius: 5px;
+                background-color: whitesmoke;
+                border: solid black;
+            }
+            #play_button{
+                height: 50px;
+                width: 70px;
+                background-color: red;
+                border-radius: 5px;
+                color: whitesmoke;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 15pt;
+                border: solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="banner">
+            <div id="header">
+                <p style="font-size: 20pt; border: solid 6px; padding: 20px;">Part 7: Video player using Angular JS</p>
+                <a href="main_page.html" style="color:black"> Return to homepage.</a>
+            </div>
+            <img src="assets/hazard.jpg" width="400px">
+        </div>
+        <div id="contents" class="videoDiv" ng-controller="VideoController">
+            <div class="embedded">
+                <iframe id="video" width="500" height="350" src="{{videoSource}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div style="display: flex; align-items: center; gap: 20px">
+                <input type="text" placeholder="Video URL here" id="vidURL">
+                <button id="play_button" ng-click="getWebSource()">Play</button>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+            <script type="text/javascript">  
+                var videoApp = angular.module('videoApp', []);
+                videoApp.controller('VideoController',['$scope','$window','$sce', function($scope, $window,$sce){
+                    $scope.videoDisplay = document.getElementById("videoElement");
+                    $scope.videoSource = $sce.trustAsResourceUrl(window.videoSource);
+                    $scope.getWebSource = function(){
+                        var videoSource = "https://www.youtube.com/embed/";
+                        var x = document.getElementById("vidURL").value;
+                        videoSource+=x.slice(32, 43);
+                        var y = document.querySelector("iframe");
+                        y.src = videoSource;
+                    };
+                }]);
+            </script>
+            <br><hr>
+            <a href="#header">Return to top.</a>
+            <br>
+            <a href="main_page.html">Return to homepage.</a>
+        </div>
+    </body>
+</html>
