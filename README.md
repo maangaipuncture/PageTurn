@@ -2,6 +2,8 @@
 
 PageTurn is a letterboxd-like web application for books that showcases my journey in improving my frontend skills and gaining in-depth knowledge of the MEAN stack (MongoDB, Express.js, Angular, Node.js). This project has provided me with hands-on experience in building modern web applications and managing databases.
 
+My primary focus was on providing a seamless, clean and minimal UI which was also aesthestically appealing. For this reason I the UI was developed on Figma taking Usability principles into consideration.
+Figma: 'https://www.figma.com/file/qqUFJAAXXOdOhj2fKHB63k/PageTurn-Project?type=design&node-id=0%3A1&mode=design&t=CyLC1CAx7RvnFBBT-1'
 
 Throughout this project, I have focused on improving my frontend development skills. I have implemented responsive and visually appealing user interfaces using HTML, CSS, and Angular framework. The project has allowed me to explore various frontend concepts and best practices, including UI design, component architecture, and data binding.
 
